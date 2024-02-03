@@ -58,35 +58,34 @@ def used_in_row(grid, row, num):
     """
         Function to check if a number is used in a row
     """
+    for i in range(9):
+        if grid[row][i] == num:
+            return True
 
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    return False
 
 
 def used_in_column(grid, col, num):
     """
         Function to check if a number is used in a column
     """
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    for i in range(9):
+        if grid[i][col] == num:
+            return True
+
+    return False
 
 
 def used_in_box(grid, box_start_row, box_start_col, num):
     """
         Function to check if a number is used in a 3x3 box
     """
+    for i in range(3):
+        for j in range(3):
+            if grid[i + box_start_row][j + box_start_col] == num:
+                return True
 
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    return False
 
 
 def find_unassigned_location(grid):
