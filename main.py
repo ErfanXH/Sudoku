@@ -3,6 +3,9 @@ from itertools import product
 from collections import defaultdict
 import copy
 
+count_backtracking = 0
+count_csp = 0
+
 # Generator
 
 
@@ -132,7 +135,9 @@ def solve_sudoku(grid):
     if i == -1 and j == -1:
         return True
 
+    global count_backtracking
     for value in range(1, 10):
+        count_backtracking += 1
         if is_safe(grid, i, j, value):
             grid[i][j] = value
             if solve_sudoku(grid):
@@ -170,7 +175,6 @@ def solve_sudoku_csp(grid):
                 accepted = []
                 if grid[i][j] != 0:
                     accepted = grid[i][j]
-                    # accepted.append(grid[i][j])
                 else:
                     all_possibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
                     for k in all_possibles:
@@ -220,14 +224,15 @@ def solve_sudoku_csp(grid):
         if i == -1 and j == -1:
             return True
 
+        global count_csp
         first = copy.deepcopy(assignment[(i, j)])
 
         for val in assignment[(i, j)].copy():
+            count_csp += 1
             if is_valid_assignment(i, j, val, assignment):
                 assignment[(i, j)] = val
                 if solve_csp(assignment):
                     return True
-                # assignment[(i, j)] = 0  # wtf??!!!!!
                 if type(assignment[(i, j)]) == list:
                     assignment[(i, j)].remove(val)
 
