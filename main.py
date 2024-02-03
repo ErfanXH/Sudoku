@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import product
 from collections import defaultdict
+import copy
 
 # Generator
 
@@ -219,13 +220,18 @@ def solve_sudoku_csp(grid):
         if i == -1 and j == -1:
             return True
 
-        # Try assigning each possible value to the unassigned location
+        first = copy.deepcopy(assignment[(i, j)])
+
         for val in assignment[(i, j)].copy():
             if is_valid_assignment(i, j, val, assignment):
                 assignment[(i, j)] = val
                 if solve_csp(assignment):
                     return True
-                assignment[(i, j)] = 0
+                # assignment[(i, j)] = 0  # wtf??!!!!!
+                if type(assignment[(i, j)]) == list:
+                    assignment[(i, j)].remove(val)
+
+        assignment[(i, j)] = first
         return False
 
     # Create initial domains for each cell in the grid
