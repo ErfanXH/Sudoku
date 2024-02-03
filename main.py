@@ -4,7 +4,7 @@ from collections import defaultdict
 import copy
 
 count_backtracking = 0
-count_csp = 0
+count_forward_checking = 0
 
 # Generator
 
@@ -224,11 +224,11 @@ def solve_sudoku_forward_checking(grid):
         if i == -1 and j == -1:
             return True
 
-        global count_csp
+        global count_forward_checking
         first = copy.deepcopy(assignment[(i, j)])
 
         for val in assignment[(i, j)].copy():
-            count_csp += 1
+            count_forward_checking += 1
             if is_valid_assignment(i, j, val, assignment):
                 assignment[(i, j)] = val
                 if solve_forward_checking(assignment):
@@ -279,13 +279,13 @@ def backtracking_answer(sudoku_grid):
     print(end='\n\n\n')
 
 
-# Function to solve the Sudoku grid using CSP
+# Function to solve the Sudoku grid using backtracking with forward checking
 def backtracking_forward_checking_answer(sudoku_grid):
     print("Backtracking (Using Forward Checking) Answer:\n")
     solved_grid = solve_sudoku_forward_checking(sudoku_grid)
     if solved_grid is not None:
         print("Sudoku solved successfully:")
-        print(f"Steps Count: {count_csp}")
+        print(f"Steps Count: {count_forward_checking}")
 
         for i in range(9):
             for j in range(9):
@@ -300,12 +300,12 @@ def backtracking_forward_checking_answer(sudoku_grid):
 # Generate and display the initial Sudoku grid
 generate_sudoko = initializing_grid()
 
-copy1 = copy.deepcopy(generate_sudoko)
+grid_1 = copy.deepcopy(generate_sudoko)
 
 # Solve the Sudoku grid using backtracking
-backtracking_answer(copy1)
+backtracking_answer(grid_1)
 
-copy2 = copy.deepcopy(generate_sudoko)
+grid_2 = copy.deepcopy(generate_sudoko)
 
 # Solve the Sudoku grid using CSP
-backtracking_forward_checking_answer(copy2)
+backtracking_forward_checking_answer(grid_2)
