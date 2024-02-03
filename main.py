@@ -34,12 +34,12 @@ def fill_box(grid, row, col):
     """
         Function to fill a box with random values
     """
-
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    for i in range(3):
+        for j in range(3):
+            num = np.random.randint(1, 10)
+            while not is_safe(grid, row + i, col + j, num):
+                num = np.random.randint(1, 10)
+            grid[row + i][col + j] = int(num)
 
 
 def is_safe(grid, row, col, num):
