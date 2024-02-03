@@ -92,12 +92,12 @@ def find_unassigned_location(grid):
     """
         Function to find an unassigned location in the grid
     """
+    for i in range(9):
+        for j in range(9):
+            if grid[i][j] == 0:
+                return i, j
 
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    return -1, -1
 
 
 def remove_elements(grid, num_elements):
