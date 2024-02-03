@@ -187,12 +187,19 @@ def solve_sudoku_csp(grid):
             Check if the value is already used in the same column
             Check if the value is already used in the same 3x3 box
         """
+        for _i in range(9):
+            for _j in range(9):
+                if _i == i:
+                    if assignment[(_i, _j)] == val:  # same row
+                        return False
+                if _j == j:
+                    if assignment[(_i, _j)] == val:  # same column
+                        return False
+                if (i - i % 3 == _i or i - i % 3 == _i - 1 or i - i % 3 == _i - 2) and (j - j % 3 == _j or j - j % 3 == _j - 1 or j - j % 3 == _j - 2):
+                    if assignment[(_i, _j)] == val:  # same 3x3 box
+                        return False
 
-        ############
-        ##        ##
-        ##  Code  ##
-        ##        ##
-        ############
+        return True
 
     def find_unassigned_location(assignment):
         """
