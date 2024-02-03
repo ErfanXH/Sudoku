@@ -126,12 +126,19 @@ def solve_sudoku(grid):
     """
         Function to solve the Sudoku grid using backtracking
     """
+    i, j = find_unassigned_location(grid)
 
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    if i == -1 and j == -1:
+        return True
+
+    for value in range(1, 10):
+        if is_safe(grid, i, j, value):
+            grid[i][j] = value
+            if solve_sudoku(grid):
+                return True
+            grid[i][j] = 0
+
+    return False
 
 
 def display_grid(grid):
