@@ -263,43 +263,49 @@ def initializing_grid():
         for j in i:
             print(j, end=' ')
         print("")
-    print(end='\n\n\n\n\n')
+    print(end='\n\n\n')
     return sudoku_grid
 
 
 # Function to solve the Sudoku grid using backtracking
 def backtracking_answer(sudoku_grid):
-    print("Back Tracking Answer:\n\n")
+    print("Back Tracking Answer:\n")
     if solve_sudoku(sudoku_grid):
         print("Sudoku solved successfully:")
+        print(f"Steps Count: {count_backtracking}")
         display_grid(sudoku_grid)
     else:
         print("No solution exists for the given Sudoku.")
-    print(end='\n\n\n\n\n')
+    print(end='\n\n\n')
 
 
 # Function to solve the Sudoku grid using CSP
 def csp_answer(sudoku_grid):
-    print("CSP Answer:\n")
+    print("Backtracking (Using Forward Checking) Answer:\n")
     solved_grid = solve_sudoku_csp(sudoku_grid)
     if solved_grid is not None:
         print("Sudoku solved successfully:")
-        for row in solved_grid:
-            for r1 in row:
-                for r2 in r1:
-                    print(r2, end=' ')
+        print(f"Steps Count: {count_csp}")
+
+        for i in range(9):
+            for j in range(9):
+                print(solved_grid[i][j], end=' ')
             print()
     else:
         print("No solution exists for the given Sudoku.")
-    print(end='\n\n\n\n\n')
+    print(end='\n\n\n')
 
 
 # Main
 # Generate and display the initial Sudoku grid
 generate_sudoko = initializing_grid()
 
+copy1 = copy.deepcopy(generate_sudoko)
+
 # Solve the Sudoku grid using backtracking
-backtracking_answer(generate_sudoko)
+backtracking_answer(copy1)
+
+copy2 = copy.deepcopy(generate_sudoko)
 
 # Solve the Sudoku grid using CSP
-csp_answer(generate_sudoko)
+csp_answer(copy2)
