@@ -160,7 +160,7 @@ def display_grid(grid):
 # Backtracking - Continued
 
 
-def solve_sudoku_csp(grid):
+def solve_sudoku_forward_checking(grid):
     """
         Function to solve the Sudoku grid using Constraint Satisfaction Problem (CSP)
     """
@@ -219,7 +219,7 @@ def solve_sudoku_csp(grid):
         return (-1, -1)
 
     # Recursive function to solve the Sudoku grid using CSP
-    def solve_csp(assignment):
+    def solve_forward_checking(assignment):
         i, j = find_unassigned_location(assignment)
         if i == -1 and j == -1:
             return True
@@ -231,7 +231,7 @@ def solve_sudoku_csp(grid):
             count_csp += 1
             if is_valid_assignment(i, j, val, assignment):
                 assignment[(i, j)] = val
-                if solve_csp(assignment):
+                if solve_forward_checking(assignment):
                     return True
                 if type(assignment[(i, j)]) == list:
                     assignment[(i, j)].remove(val)
@@ -244,7 +244,7 @@ def solve_sudoku_csp(grid):
     assignment = {(i, j): val for (i, j), val in domains.items()}
 
     # Solve the Sudoku grid using CSP
-    if solve_csp(assignment):
+    if solve_forward_checking(assignment):
         solved_grid = [[assignment[(i, j)] for j in range(9)]
                        for i in range(9)]
         return solved_grid
@@ -282,7 +282,7 @@ def backtracking_answer(sudoku_grid):
 # Function to solve the Sudoku grid using CSP
 def csp_answer(sudoku_grid):
     print("Backtracking (Using Forward Checking) Answer:\n")
-    solved_grid = solve_sudoku_csp(sudoku_grid)
+    solved_grid = solve_sudoku_forward_checking(sudoku_grid)
     if solved_grid is not None:
         print("Sudoku solved successfully:")
         print(f"Steps Count: {count_csp}")
