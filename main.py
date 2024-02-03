@@ -14,12 +14,19 @@ def generate_sudoku():
         Solve the Sudoku grid
         Remove elements from the grid to create a puzzle
     """
+    grid = [[0 for x in range(9)] for y in range(9)]
 
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    fill_diagonal(grid)
+
+    solve_sudoku(grid)
+
+    global count_backtracking
+    count_backtracking = 0
+
+    number_removed = np.random.randint(1, 45)
+    remove_elements(grid, number_removed)
+
+    return grid
 
 
 def fill_diagonal(grid):
