@@ -13,9 +13,9 @@ Sudoku is a logic-based, combinatorial number-placement puzzle. The objective is
 
 ### :camera: Screenshots
 <p align="center" width="100%">
-  <a href=""><img src="Images/generate.png" alt='image' width="30%" height='400'/></a>
+  <a href=""><img src="Images/generate.png" alt='image' width="25%" height='400'/></a>
   <a href=""><img src="Images/backtracking.png" alt='image' width="30%" height='400'/></a>
-  <a href=""><img src="Images/backtracking-forward-checking.png" alt='image' width="33%" height='400'/></a>
+  <a href=""><img src="Images/backtracking-forward-checking.png" alt='image' width="37%" height='400'/></a>
 </p>
 
 ## :toolbox: Getting Started
