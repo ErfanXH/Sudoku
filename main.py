@@ -104,12 +104,13 @@ def remove_elements(grid, num_elements):
     """
         Function to remove elements from the grid
     """
-
-    ############
-    ##        ##
-    ##  Code  ##
-    ##        ##
-    ############
+    count = 0
+    while count < num_elements:
+        remove_i = np.random.randint(0, 9)
+        remove_j = np.random.randint(0, 9)
+        if grid[remove_i][remove_j] != 0:
+            grid[remove_i][remove_j] = 0
+            count += 1
 
 # Backtracking
 
