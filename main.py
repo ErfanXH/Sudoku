@@ -205,12 +205,13 @@ def solve_sudoku_csp(grid):
         """
             Function to find an unassigned location in the grid
         """
+        for i in range(9):
+            for j in range(9):
+                value = assignment[(i, j)]
+                if type(value) == list:
+                    return (i, j)
 
-        ############
-        ##        ##
-        ##  Code  ##
-        ##        ##
-        ############
+        return (-1, -1)
 
     # Recursive function to solve the Sudoku grid using CSP
     def solve_csp(assignment):
