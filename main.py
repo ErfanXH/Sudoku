@@ -280,7 +280,7 @@ def backtracking_answer(sudoku_grid):
 
 
 # Function to solve the Sudoku grid using CSP
-def csp_answer(sudoku_grid):
+def backtracking_forward_checking_answer(sudoku_grid):
     print("Backtracking (Using Forward Checking) Answer:\n")
     solved_grid = solve_sudoku_forward_checking(sudoku_grid)
     if solved_grid is not None:
@@ -308,4 +308,4 @@ backtracking_answer(copy1)
 copy2 = copy.deepcopy(generate_sudoko)
 
 # Solve the Sudoku grid using CSP
-csp_answer(copy2)
+backtracking_forward_checking_answer(copy2)
