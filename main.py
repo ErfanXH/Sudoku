@@ -163,12 +163,21 @@ def solve_sudoku_csp(grid):
         """
             Function to create domains for each cell in the grid
         """
+        domains = dict()
+        for i in range(9):
+            for j in range(9):
+                accepted = []
+                if grid[i][j] != 0:
+                    accepted = grid[i][j]
+                    # accepted.append(grid[i][j])
+                else:
+                    all_possibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+                    for k in all_possibles:
+                        if is_safe(grid, i, j, k):
+                            accepted.append(k)
+                domains[(i, j)] = accepted
 
-        ############
-        ##        ##
-        ##  Code  ##
-        ##        ##
-        ############
+        return domains
 
     def is_valid_assignment(i, j, val, assignment):
         """
